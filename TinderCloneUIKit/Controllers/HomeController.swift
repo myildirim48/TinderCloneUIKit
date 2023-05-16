@@ -15,15 +15,15 @@ class HomeController: UIViewController {
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
     let buttonControllers = HomeButtonControlsStackView()
-
-//    let cardViewModels = ([
-//        User(name: "Jane", age: 23, profession: "DJ At", imageNames: ["jane1","jane2","jane3"]),
-//        User(name: "Kelly", age: 19, profession: "Waitress", imageNames: ["kelly1", "kelly2", "kelly3"]),
-//        Advertiser(title: "Slide out menu", brandName: "Lets Build That App", posterPhotoName: "slide_out_menu_poster")
-//    ]  as [ProducesCardViewModel]).map { produce -> CardViewModel in
-//        return produce.toCardViewModel()
-//    }
-
+    
+    //    let cardViewModels = ([
+    //        User(name: "Jane", age: 23, profession: "DJ At", imageNames: ["jane1","jane2","jane3"]),
+    //        User(name: "Kelly", age: 19, profession: "Waitress", imageNames: ["kelly1", "kelly2", "kelly3"]),
+    //        Advertiser(title: "Slide out menu", brandName: "Lets Build That App", posterPhotoName: "slide_out_menu_poster")
+    //    ]  as [ProducesCardViewModel]).map { produce -> CardViewModel in
+    //        return produce.toCardViewModel()
+    //    }
+    
     var cardViewModels = [CardViewModel]()
     
     override func viewDidLoad() {
@@ -76,12 +76,13 @@ class HomeController: UIViewController {
         cardView.fillSuperview()
     }
     
-   @objc func handleSettings() {
-        let registrationController = RegistrationController()
-       present(registrationController, animated: true)
+    @objc func handleSettings() {
+        let settingsController = SettingsController()
+        let navController = UINavigationController(rootViewController: settingsController)
+        present(navController, animated: true)
     }
     
-//MARK: - Fileprivate
+    //MARK: - Fileprivate
     fileprivate func setupLayout() {
         view.backgroundColor = .white
         let overallStackView = UIStackView(arrangedSubviews: [topStackView,cardsDeckView,buttonControllers])
