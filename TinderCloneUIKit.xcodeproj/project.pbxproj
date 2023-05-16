@@ -16,6 +16,8 @@
 		74C6FE0D2A1237D200AB97E4 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 74C6FE0C2A1237D200AB97E4 /* FirebaseStorage */; };
 		74C6FE0F2A12383500AB97E4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74C6FE0E2A12383500AB97E4 /* GoogleService-Info.plist */; };
 		74C6FE112A1252D500AB97E4 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6FE102A1252D500AB97E4 /* Bindable.swift */; };
+		74C6FE142A1392F800AB97E4 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6FE132A1392F800AB97E4 /* ImageFetcher.swift */; };
+		74C6FE162A13932800AB97E4 /* ImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6FE152A13932800AB97E4 /* ImageView+Ext.swift */; };
 		74E533002A0D6C6000BE7544 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E532FF2A0D6C6000BE7544 /* AppDelegate.swift */; };
 		74E533022A0D6C6000BE7544 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E533012A0D6C6000BE7544 /* SceneDelegate.swift */; };
 		74E533042A0D6C6000BE7544 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E533032A0D6C6000BE7544 /* HomeController.swift */; };
@@ -37,6 +39,8 @@
 		74C6FE002A1101F100AB97E4 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		74C6FE0E2A12383500AB97E4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		74C6FE102A1252D500AB97E4 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		74C6FE132A1392F800AB97E4 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
+		74C6FE152A13932800AB97E4 /* ImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Ext.swift"; sourceTree = "<group>"; };
 		74E532FC2A0D6C6000BE7544 /* TinderCloneUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinderCloneUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74E532FF2A0D6C6000BE7544 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74E533012A0D6C6000BE7544 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		74C6FE122A1392F000AB97E4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				74C6FE132A1392F800AB97E4 /* ImageFetcher.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		74E532F32A0D6C6000BE7544 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +103,7 @@
 		74E532FE2A0D6C6000BE7544 /* TinderCloneUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				74C6FE122A1392F000AB97E4 /* Networking */,
 				74E533212A0E927A00BE7544 /* ViewModels */,
 				74E5331E2A0E8D3100BE7544 /* Model */,
 				74E533162A0E515B00BE7544 /* Views */,
@@ -110,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				74E533142A0E4BFC00BE7544 /* UIView+Ext.swift */,
+				74C6FE152A13932800AB97E4 /* ImageView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -244,7 +258,9 @@
 				74E533202A0E8D3B00BE7544 /* User.swift in Sources */,
 				74E533282A0FED9700BE7544 /* RegistrationController.swift in Sources */,
 				74E5331B2A0E558600BE7544 /* TopNavigationStackView.swift in Sources */,
+				74C6FE162A13932800AB97E4 /* ImageView+Ext.swift in Sources */,
 				74C6FE112A1252D500AB97E4 /* Bindable.swift in Sources */,
+				74C6FE142A1392F800AB97E4 /* ImageFetcher.swift in Sources */,
 				74C6FDFF2A0FF64B00AB97E4 /* CustomTextField.swift in Sources */,
 				74C6FE012A1101F100AB97E4 /* RegistrationViewModel.swift in Sources */,
 				74E533022A0D6C6000BE7544 /* SceneDelegate.swift in Sources */,

@@ -12,7 +12,11 @@ class CardView: UIStackView {
     var cardViewModel: CardViewModel! {
         didSet {
             let imageName = cardViewModel.imageNames.first ?? ""
-            imageView.image = UIImage(named: imageName)
+//            imageView.image = UIImage(named: imageName)
+    
+            imageView.downloadImage(fromUrl: imageName)
+            print(imageName)
+            
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
             
@@ -30,8 +34,12 @@ class CardView: UIStackView {
         }
     }
     fileprivate func setupImageIndexObserver(){
-        cardViewModel.imageIndexObserver = { [weak self] idx,image in
-            self?.imageView.image = image
+        cardViewModel.imageIndexObserver = { [weak self] idx,imageUrl in
+            
+            if let imageUrl {
+                self?.imageView.downloadImage(fromUrl: imageUrl)
+
+            }
             self?.barsStackView.arrangedSubviews.forEach({ view in
                 view.backgroundColor = self?.barDeselectedColor
             })
