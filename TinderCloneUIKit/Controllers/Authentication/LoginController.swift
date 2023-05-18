@@ -45,7 +45,15 @@ class LoginController: UIViewController {
     }
     
     @objc fileprivate func handleLogin(){
-     print("DEBUG: handle login")
+        guard let email = emailTextField.text else { return }
+        guard let password = emailTextField.text else { return }
+        AuthService.userLogin(withEmail: email, password: password) { authResult, error in
+            if let error {
+                print("DEBUG: Error while user sigin, \(error.localizedDescription)")
+                return
+            }
+            self.dismiss(animated: true)
+        }
     }
     
     @objc fileprivate func handleShowRegistration(){

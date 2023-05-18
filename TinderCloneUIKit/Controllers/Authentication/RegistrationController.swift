@@ -22,11 +22,12 @@ class RegistrationController: UIViewController {
     }()
     private let emailTextField = CustomTextField(placeholder: "Email")
     private let fullNameTextField = CustomTextField(placeholder: "Full Name", isSecureText: true)
-    
     private let passwordTextField = CustomTextField(placeholder: "Password", isSecureText: true)
     
     private let registerButton = AuthButton(title: "Register", type: .system)
     private let goToLoginButton = TextButton(title: "Already have an account", boldTitle: "Sign In")
+    
+    private var profileImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,22 @@ class RegistrationController: UIViewController {
     }
     
     @objc fileprivate func handleRegisterUser(){
-        print("DEBUG: handle register")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullName = fullNameTextField.text else { return }
+        guard let profileImage else { return }
+        let credentials = AuthCredentials(email: email,
+                                          password: password,
+                                          fullName: fullName,
+                                          profileImage: profileImage)
+        AuthService.registerUser(withCredential: credentials) { error in
+            if let error {
+                print("DEBUG: Error while registering user, \(error.localizedDescription)")
+                return
+            }
+            
+            print("DEBUG: User registered successfully")
+        }
     }
     
     @objc fileprivate func handleGoToLogin(){
@@ -116,6 +132,7 @@ class RegistrationController: UIViewController {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
+        profileImage = image
         selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         selectPhotoButton.layer.borderColor = UIColor(white: 1, alpha: 1).cgColor
         selectPhotoButton.layer.borderWidth = 3
