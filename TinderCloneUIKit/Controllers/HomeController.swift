@@ -16,16 +16,35 @@ class HomeController: UIViewController {
     private let deckStackView = UIView()
     private let bottomStackView = HomeButtonControlsStackView()
     
-    
+    private var viewModels = [CardViewModel]() {
+        didSet{ configureCards() }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        checkIfUserLoggedIn()
         configureUI()
-        configureCards()
+        fetchUsers()
+
+//        fetchUser()
+//        logout()
     }
     
     //MARK: - API
+    
+    func fetchUsers() {
+        Service.fetchUsers { users in
+            self.viewModels = users.map({ CardViewModel(user: $0) })
+        }
+    }
+    
+    func fetchUser()  {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Service.fetchUser(withUid: uid) { user in
+            
+        }
+    }
+    
     func checkIfUserLoggedIn(){
         if Auth.auth().currentUser == nil {
             presentLoginController()
@@ -46,20 +65,11 @@ class HomeController: UIViewController {
     //MARK: - Helper
     
     func configureCards() {
-        let user1 = User(name: "Jane", age: 22, images: [#imageLiteral(resourceName: "kelly3"), #imageLiteral(resourceName: "kelly1")])
-        let user2 = User(name: "Megan", age: 22, images: [#imageLiteral(resourceName: "jane3"), #imageLiteral(resourceName: "jane2")])
-        
-        let card1 = CardView(viewModel: CardViewModel(user: user1))
-        let card2 = CardView(viewModel: CardViewModel(user: user2))
-        
-        
-        deckStackView.addSubview(card1)
-        deckStackView.addSubview(card2)
-        
-        card1.fillSuperview()
-        card2.fillSuperview()
-        
-        
+        viewModels.forEach { cardViewModel in
+            let cardView = CardView(viewModel: cardViewModel)
+            deckStackView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
     }
     
     func configureUI() {

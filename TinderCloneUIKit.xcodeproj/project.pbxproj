@@ -15,6 +15,7 @@
 		742651C92A162E6F00B1C1BA /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651C82A162E6F00B1C1BA /* AuthViewModel.swift */; };
 		742651CB2A16494100B1C1BA /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651CA2A16494100B1C1BA /* AuthService.swift */; };
 		742651CD2A16494500B1C1BA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651CC2A16494500B1C1BA /* Service.swift */; };
+		742651CF2A1771D300B1C1BA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651CE2A1771D300B1C1BA /* Constant.swift */; };
 		745165322A14E7B900CECFF6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745165312A14E7B900CECFF6 /* CardView.swift */; };
 		745165342A14F5B600CECFF6 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745165332A14F5B600CECFF6 /* UIViewController+Ext.swift */; };
 		745165362A14F5C800CECFF6 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745165352A14F5C800CECFF6 /* UIColor+Ext.swift */; };
@@ -50,6 +51,7 @@
 		742651C82A162E6F00B1C1BA /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		742651CA2A16494100B1C1BA /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		742651CC2A16494500B1C1BA /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		742651CE2A1771D300B1C1BA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		745165312A14E7B900CECFF6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		745165332A14F5B600CECFF6 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		745165352A14F5C800CECFF6 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				742651C12A1611B500B1C1BA /* CustomViews */,
 				74E533132A0E4BE000BE7544 /* Extensions */,
+				742651CE2A1771D300B1C1BA /* Constant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				74E533002A0D6C6000BE7544 /* AppDelegate.swift in Sources */,
 				742651C52A16154900B1C1BA /* AuthButton.swift in Sources */,
 				74E5331B2A0E558600BE7544 /* TopNavigationStackView.swift in Sources */,
+				742651CF2A1771D300B1C1BA /* Constant.swift in Sources */,
 				74C6FE162A13932800AB97E4 /* ImageView+Ext.swift in Sources */,
 				745165362A14F5C800CECFF6 /* UIColor+Ext.swift in Sources */,
 				745165382A152E2500CECFF6 /* User.swift in Sources */,

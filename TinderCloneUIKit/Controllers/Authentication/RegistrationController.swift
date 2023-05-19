@@ -21,7 +21,7 @@ class RegistrationController: UIViewController {
         return button
     }()
     private let emailTextField = CustomTextField(placeholder: "Email")
-    private let fullNameTextField = CustomTextField(placeholder: "Full Name", isSecureText: true)
+    private let fullNameTextField = CustomTextField(placeholder: "Full Name")
     private let passwordTextField = CustomTextField(placeholder: "Password", isSecureText: true)
     
     private let registerButton = AuthButton(title: "Register", type: .system)
@@ -64,6 +64,7 @@ class RegistrationController: UIViewController {
             }
             
             print("DEBUG: User registered successfully")
+            self.handleGoToLogin()
         }
     }
     

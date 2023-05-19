@@ -26,7 +26,6 @@ class CardView: UIView {
     private let infoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-
         return label
     }()
     
@@ -42,7 +41,7 @@ class CardView: UIView {
         configureGestureRecognizers()
         
         infoLabel.attributedText = viewModel.userInfoText
-        imageView.image = viewModel.user.images.first
+         imageView.downloadImage(fromUrl: viewModel.user.imageUrl)
          
         layer.cornerRadius = 10
         clipsToBounds = true
@@ -53,12 +52,12 @@ class CardView: UIView {
         configureGradient()
 
         addSubview(infoLabel)
-        infoLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor,padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+        infoLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
         
         addSubview(infoButton)
         infoButton.setDimensions(height: 40, width: 40)
         infoButton.centerY(inView: infoLabel)
-        infoButton.anchor(trailing: trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 16))
+         infoButton.anchor(leading: infoLabel.trailingAnchor, trailing: trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 16))
         
         
     }
@@ -151,6 +150,6 @@ class CardView: UIView {
             viewModel.showPreviousPhoto()
         }
         
-        imageView.image = viewModel.imageToShow
+//        imageView.image = viewModel.imageToShow
     }
 }
