@@ -14,7 +14,8 @@ class CardViewModel {
     let userInfoText: NSAttributedString
     var imageIndex = 0
     
-//    var imageUrl: URL?
+    var imageUrls: [String]
+    var firstImageUrl: String
     
     init(user:User) {
         self.user = user
@@ -26,7 +27,8 @@ class CardViewModel {
         
         self.userInfoText = attributedText
         
-//        self.imageUrl = URL(string: user.imageUrl)
+        self.imageUrls = user.imageUrls
+         self.firstImageUrl = imageUrls.first ?? ""
         
     }
     

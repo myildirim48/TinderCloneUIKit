@@ -41,8 +41,9 @@ class CardView: UIView {
         configureGestureRecognizers()
         
         infoLabel.attributedText = viewModel.userInfoText
-         imageView.downloadImage(fromUrl: viewModel.user.imageUrl)
          
+        imageView.downloadImage(fromUrl: viewModel.firstImageUrl)
+
         layer.cornerRadius = 10
         clipsToBounds = true
         

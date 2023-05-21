@@ -31,6 +31,13 @@ struct Service {
         }
 
     }
+    static func saveUserData(user: User, completion: @escaping(Error?) -> Void ){
+//        let userData = User(fullName: credential.fullName, age: 18, email: credential.email, uid: userUid, imageUrls: [imgUrl])
+        
+        guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
+        COLLECTION_USERS.document(user.uid).setData(encodedUser,completion: completion)
+
+    }
     
     static func fetchUser(withUid uid: String, completion: @escaping(User) -> Void){
         COLLECTION_USERS

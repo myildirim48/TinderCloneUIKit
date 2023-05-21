@@ -8,13 +8,20 @@
 import Firebase
 import FirebaseFirestoreSwift
 
-struct User: Identifiable, Decodable {
+struct User: Identifiable, Codable {
     @DocumentID var id: String?
-    let fullName: String
-    let age: Int
-    let email: String
+    var fullName: String
+    var age: Int
+    var email: String
     let uid: String
-    let imageUrl: String
+    var imageUrls: [String]
+    
+    var profession: String?
+    var bio: String?
+    
+    var minSeekingAge: Int? = 18
+    var maxSeekingAge: Int? = 60
+    
 //    var images: [UIImage]
     
 //    init(dictionary: [String:Any]) {

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestoreSwift
 
 struct AuthCredentials {
     let email: String
@@ -30,15 +31,12 @@ struct AuthService {
                 }
                 
                 guard let userUid = result?.user.uid else { return }
+
+                let userData = User(fullName: credential.fullName, age: 18, email: credential.email, uid: userUid, imageUrls: [imgUrl])
                 
-                let data: [String: Any] = ["email": credential.email,
-                            "fullName": credential.fullName,
-                            "imageUrl": imgUrl,
-                            "uid": userUid,
-                            "age": 18 ]
-                
-                COLLECTION_USERS.document(userUid)
-                    .setData(data, completion: completion)
+                guard let encodedUser = try? Firestore.Encoder().encode(userData) else { return }
+                COLLECTION_USERS.document(userUid).setData(encodedUser)
+
             }
         }
     }

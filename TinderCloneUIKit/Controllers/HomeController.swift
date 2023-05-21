@@ -12,6 +12,8 @@ import JGProgressHUD
 
 class HomeController: UIViewController {
     
+    //MARK: - Properties
+    private var user: User?
     private let topStackView = TopNavigationStackView()
     private let deckStackView = UIView()
     private let bottomStackView = HomeButtonControlsStackView()
@@ -26,7 +28,7 @@ class HomeController: UIViewController {
         configureUI()
         fetchUsers()
 
-//        fetchUser()
+        fetchUser()
 //        logout()
     }
     
@@ -41,7 +43,7 @@ class HomeController: UIViewController {
     func fetchUser()  {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Service.fetchUser(withUid: uid) { user in
-            
+            self.user = user
         }
     }
     
@@ -75,6 +77,8 @@ class HomeController: UIViewController {
     func configureUI() {
         view.backgroundColor = .white
         
+        topStackView.delegate = self
+        
         let stack = UIStackView(arrangedSubviews: [topStackView,deckStackView,bottomStackView])
         stack.axis = .vertical
         
@@ -94,4 +98,33 @@ class HomeController: UIViewController {
         }
     }
 }
+//MARK: - HomeNavigationStackViewDelegate
+extension HomeController: HomeNavigationStackViewDelegate {
+    func showSettings() {
+        guard let user else { return }
+        let controller = SettingsController(user: user)
+        controller.delegate = self 
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
+    }
+    
+    func showMessages() {
+        let controller = MessagesController()
+        present(controller, animated: true)
+    }
+}
 
+//MARK: - SettingsControllerDelegate
+
+extension HomeController: SettingsControllerDelegate {
+    func settingsControllerWanttoLogout(_ controller: SettingsController) {
+        controller.dismiss(animated: true)
+        logout()
+    }
+    
+    func settingsController(_ controller: SettingsController, wantsToUpdate user: User) {
+        controller.dismiss(animated: true)
+        self.user = user
+    }
+}
