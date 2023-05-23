@@ -71,23 +71,16 @@ class SettingsController: UITableViewController {
         
         footerView.deleagate = self
     }
-    
-    func showHud(text: String = "", show: Bool) {
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = text
-        if show {
-            hud.show(in: view)
-        } else {
-            hud.dismiss()
-        }
-    }
+
     //MARK: -  API
     func uploadImage(image: UIImage)  {
-        showHud(text: "Saving Image", show: true)
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Image..."
+        hud.show(in: view)
         
         Service.uploadImage(image: image) { imgUrl in
             self.user.imageUrls.append(imgUrl)
-            self.showHud(show: false)
+            hud.dismiss()
         }
     }
     
@@ -99,9 +92,13 @@ class SettingsController: UITableViewController {
     
     @objc fileprivate func handleDone(){
         view.endEditing(true)
-        showHud(text: "Saving Data", show: true)
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Saving Data..."
+        hud.show(in: view)
+        
         
         Service.saveUserData(user: user) { _ in
+            hud.dismiss()
             self.delegate?.settingsController(self, wantsToUpdate: self.user)
         }
     }
@@ -194,6 +191,5 @@ extension SettingsController: SettingsCellDelegate {
 extension SettingsController: SettingsFooterDelegate {
     func handleLogout() {
         delegate?.settingsControllerWanttoLogout(self)
-        
     }
 }

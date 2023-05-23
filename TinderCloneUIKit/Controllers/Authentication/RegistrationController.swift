@@ -69,8 +69,8 @@ class RegistrationController: UIViewController {
     }
     
     @objc fileprivate func handleGoToLogin(){
-        navigationController?.popToViewController(LoginController(), animated: true)
-//        navigationController?.popViewController(animated: true)
+//        navigationController?.popToViewController(LoginController(), animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc fileprivate func textDidChange(sender: UITextField){

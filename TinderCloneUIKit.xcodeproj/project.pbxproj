@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7410A1D62A1C904B00A1BE66 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1D52A1C904B00A1BE66 /* ProfileViewModel.swift */; };
+		7410A1D82A1C957E00A1BE66 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1D72A1C957E00A1BE66 /* SegmentedBarView.swift */; };
 		742651BD2A160CC000B1C1BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651BC2A160CC000B1C1BA /* LoginController.swift */; };
 		742651BF2A160CC600B1C1BA /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651BE2A160CC600B1C1BA /* RegistrationController.swift */; };
 		742651C32A1611C700B1C1BA /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651C22A1611C700B1C1BA /* CustomTextField.swift */; };
@@ -22,6 +24,8 @@
 		742651DC2A18F05000B1C1BA /* ReuseIdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651DB2A18F05000B1C1BA /* ReuseIdentifierProtocol.swift */; };
 		742651DE2A18F0F400B1C1BA /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651DD2A18F0F400B1C1BA /* SettingsViewModel.swift */; };
 		742651E02A1A098900B1C1BA /* SettingsFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651DF2A1A098900B1C1BA /* SettingsFooter.swift */; };
+		742651E32A1A887E00B1C1BA /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651E22A1A887E00B1C1BA /* ProfileController.swift */; };
+		742651E52A1A8AB500B1C1BA /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651E42A1A8AB500B1C1BA /* ProfileCell.swift */; };
 		745165322A14E7B900CECFF6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745165312A14E7B900CECFF6 /* CardView.swift */; };
 		745165342A14F5B600CECFF6 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745165332A14F5B600CECFF6 /* UIViewController+Ext.swift */; };
 		745165362A14F5C800CECFF6 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745165352A14F5C800CECFF6 /* UIColor+Ext.swift */; };
@@ -49,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7410A1D52A1C904B00A1BE66 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		7410A1D72A1C957E00A1BE66 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
 		742651BC2A160CC000B1C1BA /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		742651BE2A160CC600B1C1BA /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		742651C22A1611C700B1C1BA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -64,6 +70,8 @@
 		742651DB2A18F05000B1C1BA /* ReuseIdentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifierProtocol.swift; sourceTree = "<group>"; };
 		742651DD2A18F0F400B1C1BA /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		742651DF2A1A098900B1C1BA /* SettingsFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooter.swift; sourceTree = "<group>"; };
+		742651E22A1A887E00B1C1BA /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		742651E42A1A8AB500B1C1BA /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		745165312A14E7B900CECFF6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		745165332A14F5B600CECFF6 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		745165352A14F5C800CECFF6 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
@@ -115,7 +123,6 @@
 		742651C02A16119C00B1C1BA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				742651C12A1611B500B1C1BA /* CustomViews */,
 				74E533132A0E4BE000BE7544 /* Extensions */,
 				742651CE2A1771D300B1C1BA /* Constant.swift */,
 				742651DB2A18F05000B1C1BA /* ReuseIdentifierProtocol.swift */,
@@ -129,6 +136,7 @@
 				742651C22A1611C700B1C1BA /* CustomTextField.swift */,
 				742651C42A16154900B1C1BA /* AuthButton.swift */,
 				742651C62A161B3000B1C1BA /* TextButton.swift */,
+				7410A1D72A1C957E00A1BE66 /* SegmentedBarView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -157,6 +165,14 @@
 				742651DF2A1A098900B1C1BA /* SettingsFooter.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		742651E12A1A887400B1C1BA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				742651E22A1A887E00B1C1BA /* ProfileController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		74C6FE122A1392F000AB97E4 /* Networking */ = {
@@ -219,11 +235,13 @@
 		74E533162A0E515B00BE7544 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				742651C12A1611B500B1C1BA /* CustomViews */,
 				742651D62A17947300B1C1BA /* Settings */,
 				74E533182A0E518900BE7544 /* HomeButtonControlsStackView.swift */,
 				74E5331A2A0E558600BE7544 /* TopNavigationStackView.swift */,
 				74C6FE1B2A14AE6000AB97E4 /* AgeRangeCell.swift */,
 				745165312A14E7B900CECFF6 /* CardView.swift */,
+				742651E42A1A8AB500B1C1BA /* ProfileCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,6 +260,7 @@
 				745165392A152F3600CECFF6 /* CardViewModel.swift */,
 				742651C82A162E6F00B1C1BA /* AuthViewModel.swift */,
 				742651DD2A18F0F400B1C1BA /* SettingsViewModel.swift */,
+				7410A1D52A1C904B00A1BE66 /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -249,6 +268,7 @@
 		74E533262A0FED7900BE7544 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				742651E12A1A887400B1C1BA /* Profile */,
 				742651D32A1792A500B1C1BA /* Messages */,
 				742651D02A17929000B1C1BA /* Settings */,
 				742651BB2A160CB700B1C1BA /* Authentication */,
@@ -346,6 +366,7 @@
 				742651D52A1792AF00B1C1BA /* MessagesController.swift in Sources */,
 				74E533152A0E4BFC00BE7544 /* UIView+Ext.swift in Sources */,
 				74E533042A0D6C6000BE7544 /* HomeController.swift in Sources */,
+				742651E32A1A887E00B1C1BA /* ProfileController.swift in Sources */,
 				7451653A2A152F3600CECFF6 /* CardViewModel.swift in Sources */,
 				742651D22A1792A300B1C1BA /* SettingsController.swift in Sources */,
 				742651CB2A16494100B1C1BA /* AuthService.swift in Sources */,
@@ -357,6 +378,7 @@
 				742651CF2A1771D300B1C1BA /* Constant.swift in Sources */,
 				742651E02A1A098900B1C1BA /* SettingsFooter.swift in Sources */,
 				74C6FE162A13932800AB97E4 /* ImageView+Ext.swift in Sources */,
+				7410A1D62A1C904B00A1BE66 /* ProfileViewModel.swift in Sources */,
 				742651DE2A18F0F400B1C1BA /* SettingsViewModel.swift in Sources */,
 				745165362A14F5C800CECFF6 /* UIColor+Ext.swift in Sources */,
 				745165382A152E2500CECFF6 /* User.swift in Sources */,
@@ -368,8 +390,10 @@
 				742651C92A162E6F00B1C1BA /* AuthViewModel.swift in Sources */,
 				74C6FE1C2A14AE6000AB97E4 /* AgeRangeCell.swift in Sources */,
 				742651DC2A18F05000B1C1BA /* ReuseIdentifierProtocol.swift in Sources */,
+				742651E52A1A8AB500B1C1BA /* ProfileCell.swift in Sources */,
 				745165322A14E7B900CECFF6 /* CardView.swift in Sources */,
 				74E533192A0E518900BE7544 /* HomeButtonControlsStackView.swift in Sources */,
+				7410A1D82A1C957E00A1BE66 /* SegmentedBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

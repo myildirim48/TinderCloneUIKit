@@ -12,10 +12,17 @@ enum SwipeDirection:Int {
     case right = 1
 }
 
+protocol CardViewDelegate: AnyObject {
+    func cardView(_ view: CardView, wantsToShowProfilefor user: User)
+}
+
 class CardView: UIView {
+    
+    weak var delegate: CardViewDelegate?
     
     private let gradient = CAGradientLayer()
     private let viewModel: CardViewModel
+    private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageUrls.count)
     
     private let imageView: UIImageView = {
        let iv = UIImageView()
@@ -32,6 +39,7 @@ class CardView: UIView {
     private lazy var infoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage( #imageLiteral(resourceName: "info_icon") .withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleShowProfile), for: .touchUpInside)
         return button
     }()
     
@@ -49,6 +57,8 @@ class CardView: UIView {
         
         addSubview(imageView)
         imageView.fillSuperview()
+         confgiureBarStackView()
+
         
         configureGradient()
 
@@ -78,7 +88,11 @@ class CardView: UIView {
         gradient.locations = [0.5,1.1]
         layer.addSublayer(gradient)
     }
-    
+    func confgiureBarStackView() {
+
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor,leading: leadingAnchor,trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8),size: .init(width: 0, height: 4 ))
+    }
     func configureGestureRecognizers() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         addGestureRecognizer(panGesture)
@@ -141,6 +155,10 @@ class CardView: UIView {
         
     }
     
+    @objc fileprivate func handleShowProfile() {
+        delegate?.cardView(self, wantsToShowProfilefor: viewModel.user)
+    }
+    
     @objc fileprivate func handleChangePhotoTapGesture(sender: UITapGestureRecognizer){
         let location = sender.location(in: nil).x
         let shouldShowNextPhoto = location > self.frame.width / 2
@@ -151,6 +169,8 @@ class CardView: UIView {
             viewModel.showPreviousPhoto()
         }
         
-//        imageView.image = viewModel.imageToShow
+        imageView.downloadImage(fromUrl: viewModel.firstImageUrl)
+        
+        barStackView.setHighlighted(index: viewModel.imageIndex)
     }
 }
