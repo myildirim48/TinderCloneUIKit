@@ -7,8 +7,13 @@
 
 import UIKit
 
-class HomeButtonControlsStackView: UIStackView {
+protocol HomeButtonControlsDelegate: AnyObject {
+    func handleLike()
+    func handleDislike()
+    func handleRefresh()
+}
 
+class HomeButtonControlsStackView: UIStackView {
     
     static func createButton(image: UIImage) -> UIButton {
         let button = UIButton(type: .system)
@@ -17,6 +22,9 @@ class HomeButtonControlsStackView: UIStackView {
         
         return button
     }
+    //MARK: - Properties
+    
+    weak var delegate: HomeButtonControlsDelegate?
     
     let refreshButton = createButton(image: #imageLiteral(resourceName: "refresh_circle"))
     let disLikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"))
@@ -30,6 +38,10 @@ class HomeButtonControlsStackView: UIStackView {
         distribution = .fillEqually
         heightAnchor.constraint(equalToConstant: 100).isActive = true
         
+        refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
+        likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        disLikeButton.addTarget(self, action: #selector(handleDislike), for: .touchUpInside)
+        
         [refreshButton,disLikeButton,superLikeButton,likeButton,boostButton].forEach { button in
             self.addArrangedSubview(button)
         }
@@ -38,6 +50,16 @@ class HomeButtonControlsStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    //MARK: - Actions
     
+    @objc fileprivate func handleRefresh(){
+        delegate?.handleRefresh()
+    }
+    @objc fileprivate func handleLike(){
+        delegate?.handleLike()
+    }
     
+    @objc fileprivate func handleDislike(){
+        delegate?.handleDislike()
+    }
 }

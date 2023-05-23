@@ -14,6 +14,7 @@ enum SwipeDirection:Int {
 
 protocol CardViewDelegate: AnyObject {
     func cardView(_ view: CardView, wantsToShowProfilefor user: User)
+    func cardView(_ view: CardView, didLikeUser: Bool)
 }
 
 class CardView: UIView {
@@ -21,7 +22,7 @@ class CardView: UIView {
     weak var delegate: CardViewDelegate?
     
     private let gradient = CAGradientLayer()
-    private let viewModel: CardViewModel
+    let viewModel: CardViewModel
     private lazy var barStackView = SegmentedBarView(numberOfSegments: viewModel.imageUrls.count)
     
     private let imageView: UIImageView = {
@@ -119,9 +120,9 @@ class CardView: UIView {
             
         } completion: { _ in
             if shouldDissmisCard {
-                
-                    self.removeFromSuperview()
-                
+                let didlike = direction == .right
+                self.removeFromSuperview()
+                self.delegate?.cardView(self, didLikeUser: didlike)
             }
         }
 

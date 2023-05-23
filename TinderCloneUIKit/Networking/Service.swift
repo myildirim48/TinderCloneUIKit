@@ -10,10 +10,14 @@ import FirebaseStorage
 
 struct Service {
     
-    static func fetchUsers(completion: @escaping([User])-> Void) {
+    static func fetchUsers(forCurrentuser user: User, completion: @escaping([User])-> Void) {
         var users = [User]()
-         
-        COLLECTION_USERS.getDocuments { snapshot, error in
+        
+        let query = COLLECTION_USERS
+            .whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
+            .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
+        
+        query.getDocuments { snapshot, error in
             if let error {
                 print("DEBUG: Error while fetching users, \(error.localizedDescription)")
                 return
@@ -23,8 +27,8 @@ struct Service {
                 guard let user = try? document.data(as: User.self) else { return }
                 users.append(user)
                 
-//                if users.count == snapshot?.documents.count {
-//                }
+                guard user.uid != Auth.auth().currentUser?.uid else { return }
+
             })
             completion(users)
 
@@ -66,6 +70,24 @@ struct Service {
             reference.downloadURL { url, _ in
                 guard let imgUrl = url?.absoluteString else { return }
                 completion(imgUrl)
+            }
+        }
+    }
+    
+    static func saveSwipe(forUser user: User, isLike: Bool) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_SWIPES.document(uid).getDocument { snaphsot, error in
+            if let error {
+                print("DEBUG: Error wihle fetching swipes.", error.localizedDescription)
+            }
+            
+            let data = [user.uid: isLike]
+            
+            if snaphsot?.exists == true {
+                COLLECTION_SWIPES.document(uid).updateData(data)
+            }else {
+                COLLECTION_SWIPES.document(uid).setData(data)
             }
         }
     }

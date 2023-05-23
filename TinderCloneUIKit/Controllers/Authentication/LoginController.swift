@@ -6,10 +6,16 @@
 //
 
 import UIKit
+
+protocol AuthenticationDelegate: AnyObject {
+    func authenticationCompleted()
+}
 class LoginController: UIViewController {
     
     //MARK: -  Properties
     
+    weak var delegate: AuthenticationDelegate?
+     
     private var loginViewModel = LoginViewModel()
     
     private let iconImageView: UIImageView = {
@@ -52,12 +58,14 @@ class LoginController: UIViewController {
                 print("DEBUG: Error while user sigin, \(error.localizedDescription)")
                 return
             }
-            self.dismiss(animated: true)
+            self.delegate?.authenticationCompleted()
         }
     }
     
     @objc fileprivate func handleShowRegistration(){
-        navigationController?.pushViewController(RegistrationController(), animated: true)
+        let controller = RegistrationController()
+        controller.delegate = delegate
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     @objc fileprivate func textDidChange(sender: UITextField){

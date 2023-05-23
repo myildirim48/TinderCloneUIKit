@@ -9,6 +9,7 @@ import UIKit
 class RegistrationController: UIViewController {
     
     //MARK: - Properties
+    weak var delegate: AuthenticationDelegate?
     
     private var viewModel = RegistrationViewModel()
     
@@ -63,8 +64,7 @@ class RegistrationController: UIViewController {
                 return
             }
             
-            print("DEBUG: User registered successfully")
-            self.handleGoToLogin()
+            self.delegate?.authenticationCompleted()
         }
     }
     
