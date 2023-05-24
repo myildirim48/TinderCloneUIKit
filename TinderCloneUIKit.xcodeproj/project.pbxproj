@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		7410A1D62A1C904B00A1BE66 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1D52A1C904B00A1BE66 /* ProfileViewModel.swift */; };
 		7410A1D82A1C957E00A1BE66 /* SegmentedBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1D72A1C957E00A1BE66 /* SegmentedBarView.swift */; };
+		7410A1DA2A1DFA0800A1BE66 /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1D92A1DFA0800A1BE66 /* MatchView.swift */; };
+		7410A1DC2A1E02AD00A1BE66 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1DB2A1E02AD00A1BE66 /* SendMessageButton.swift */; };
+		7410A1DE2A1E02B700A1BE66 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1DD2A1E02B700A1BE66 /* KeepSwipingButton.swift */; };
+		7410A1E02A1E1B4200A1BE66 /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1DF2A1E1B4200A1BE66 /* MatchViewModel.swift */; };
 		742651BD2A160CC000B1C1BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651BC2A160CC000B1C1BA /* LoginController.swift */; };
 		742651BF2A160CC600B1C1BA /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651BE2A160CC600B1C1BA /* RegistrationController.swift */; };
 		742651C32A1611C700B1C1BA /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651C22A1611C700B1C1BA /* CustomTextField.swift */; };
@@ -55,6 +59,10 @@
 /* Begin PBXFileReference section */
 		7410A1D52A1C904B00A1BE66 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		7410A1D72A1C957E00A1BE66 /* SegmentedBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedBarView.swift; sourceTree = "<group>"; };
+		7410A1D92A1DFA0800A1BE66 /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		7410A1DB2A1E02AD00A1BE66 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
+		7410A1DD2A1E02B700A1BE66 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
+		7410A1DF2A1E1B4200A1BE66 /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
 		742651BC2A160CC000B1C1BA /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		742651BE2A160CC600B1C1BA /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		742651C22A1611C700B1C1BA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -137,6 +145,8 @@
 				742651C42A16154900B1C1BA /* AuthButton.swift */,
 				742651C62A161B3000B1C1BA /* TextButton.swift */,
 				7410A1D72A1C957E00A1BE66 /* SegmentedBarView.swift */,
+				7410A1DB2A1E02AD00A1BE66 /* SendMessageButton.swift */,
+				7410A1DD2A1E02B700A1BE66 /* KeepSwipingButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -242,6 +252,7 @@
 				74C6FE1B2A14AE6000AB97E4 /* AgeRangeCell.swift */,
 				745165312A14E7B900CECFF6 /* CardView.swift */,
 				742651E42A1A8AB500B1C1BA /* ProfileCell.swift */,
+				7410A1D92A1DFA0800A1BE66 /* MatchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,6 +272,7 @@
 				742651C82A162E6F00B1C1BA /* AuthViewModel.swift */,
 				742651DD2A18F0F400B1C1BA /* SettingsViewModel.swift */,
 				7410A1D52A1C904B00A1BE66 /* ProfileViewModel.swift */,
+				7410A1DF2A1E1B4200A1BE66 /* MatchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -369,8 +381,12 @@
 				742651E32A1A887E00B1C1BA /* ProfileController.swift in Sources */,
 				7451653A2A152F3600CECFF6 /* CardViewModel.swift in Sources */,
 				742651D22A1792A300B1C1BA /* SettingsController.swift in Sources */,
+				7410A1DC2A1E02AD00A1BE66 /* SendMessageButton.swift in Sources */,
 				742651CB2A16494100B1C1BA /* AuthService.swift in Sources */,
 				742651C32A1611C700B1C1BA /* CustomTextField.swift in Sources */,
+				7410A1DA2A1DFA0800A1BE66 /* MatchView.swift in Sources */,
+				7410A1DE2A1E02B700A1BE66 /* KeepSwipingButton.swift in Sources */,
+				7410A1E02A1E1B4200A1BE66 /* MatchViewModel.swift in Sources */,
 				74E533002A0D6C6000BE7544 /* AppDelegate.swift in Sources */,
 				742651D82A17947B00B1C1BA /* SettingsHeader.swift in Sources */,
 				742651C52A16154900B1C1BA /* AuthButton.swift in Sources */,

@@ -13,9 +13,13 @@ struct Service {
     static func fetchUsers(forCurrentuser user: User, completion: @escaping([User])-> Void) {
         var users = [User]()
         
+        guard let minAge = user.minSeekingAge else { return }
+        guard let maxAge = user.maxSeekingAge else { return }
+      
+        
         let query = COLLECTION_USERS
-            .whereField("age", isGreaterThanOrEqualTo: user.minSeekingAge)
-            .whereField("age", isLessThanOrEqualTo: user.maxSeekingAge)
+            .whereField("age", isGreaterThanOrEqualTo: minAge)
+            .whereField("age", isLessThanOrEqualTo: maxAge)
         
         query.getDocuments { snapshot, error in
             if let error {
@@ -25,10 +29,8 @@ struct Service {
             
             snapshot?.documents.forEach({ document in
                 guard let user = try? document.data(as: User.self) else { return }
-                users.append(user)
-                
                 guard user.uid != Auth.auth().currentUser?.uid else { return }
-
+                users.append(user)
             })
             completion(users)
 
@@ -55,7 +57,7 @@ struct Service {
                 completion(user)
             }
     }
-    
+    //MARK: -  Image
     static func uploadImage(image: UIImage, completion: @escaping(String) -> Void){
         guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
         let fileName = UUID().uuidString
@@ -73,8 +75,21 @@ struct Service {
             }
         }
     }
+    //MARK: - Match
     
-    static func saveSwipe(forUser user: User, isLike: Bool) {
+    static func checkIfUserMatchExist(forUser user: User, completion: @escaping(Bool) -> Void) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        COLLECTION_SWIPES.document(user.uid).getDocument { snapshot, error in
+            guard let data = snapshot?.data() else { return }
+            guard let didMatch = data[currentUid] as? Bool else { return }
+            completion(didMatch)
+        }
+    }
+    
+    //MARK: - Swipe
+    
+    static func saveSwipe(forUser user: User, isLike: Bool, completion: ((Error?) -> Void)?) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         COLLECTION_SWIPES.document(uid).getDocument { snaphsot, error in
@@ -87,7 +102,7 @@ struct Service {
             if snaphsot?.exists == true {
                 COLLECTION_SWIPES.document(uid).updateData(data)
             }else {
-                COLLECTION_SWIPES.document(uid).setData(data)
+                COLLECTION_SWIPES.document(uid).setData(data, completion: completion)
             }
         }
     }

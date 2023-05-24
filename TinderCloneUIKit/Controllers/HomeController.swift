@@ -28,9 +28,8 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserLoggedIn()
-        configureUI()        
+        configureUI()
         fetchCurrentUserAndCards()
-        //        logout()
     }
     
     //MARK: - API
@@ -41,7 +40,7 @@ class HomeController: UIViewController {
             
         }
     }
-
+    
     func checkIfUserLoggedIn(){
         if Auth.auth().currentUser == nil {
             presentLoginController()
@@ -67,6 +66,18 @@ class HomeController: UIViewController {
         }
     }
     
+    func saveSwipeAndCheckForMatch(forUser user: User, didLike: Bool) {
+        Service.saveSwipe(forUser: user, isLike: didLike) { error in
+            self.topCardView = self.cardViews.last
+            
+            guard didLike == true else { return }
+            
+            Service.checkIfUserMatchExist(forUser: user) { didMatch in
+                print("DEBUG: Match")
+                self.presentMatchView(forUser: user)
+            }
+        }
+    }
     //MARK: - Helpers
     
     func configureCards() {
@@ -106,6 +117,16 @@ class HomeController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             self.present(nav, animated: true)
         }
+    }
+    
+    func presentMatchView(forUser user: User) {
+        guard let currentUser = self.user else { return }
+        let viewModel = MatchViewModel(currentUser:  currentUser, matchedUser: user)
+        let matchView = MatchView(viewModel: viewModel)
+        matchView.delegate = self
+        view.addSubview(matchView)
+        matchView.fillSuperview()
+        
     }
     
     func performSwipAnimation(shouldLike: Bool) {
@@ -163,15 +184,14 @@ extension HomeController: CardViewDelegate {
         self.cardViews.removeAll { view == $0 }
         
         guard let user = topCardView?.viewModel.user else { return }
-        Service.saveSwipe(forUser: user, isLike: didLikeUser)
-        
+        saveSwipeAndCheckForMatch(forUser: user, didLike: didLikeUser)
         self.topCardView = cardViews.last
     }
     
     func cardView(_ view: CardView, wantsToShowProfilefor user: User) {
         let controller = ProfileController(user: user)
         controller.modalPresentationStyle = .fullScreen
-         controller.delegate = self //CardViewDelegate
+        controller.delegate = self //CardViewDelegate
         present(controller, animated: true)
     }
 }
@@ -182,13 +202,13 @@ extension HomeController: HomeButtonControlsDelegate{
     func handleLike() {
         guard let topCard = topCardView else { return }
         performSwipAnimation(shouldLike: true)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: true)
+        saveSwipeAndCheckForMatch(forUser: topCard.viewModel.user, didLike: true)
     }
     
     func handleDislike() {
         guard let topCard = topCardView else { return }
         performSwipAnimation(shouldLike: false)
-        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false)
+        Service.saveSwipe(forUser: topCard.viewModel.user, isLike: false, completion: nil)
     }
     
     func handleRefresh() {
@@ -203,14 +223,14 @@ extension HomeController: ProfileControllerDelegate{
     func profileController(_ controller: ProfileController, didLikeUser user: User) {
         controller.dismiss(animated: true) {
             self.performSwipAnimation(shouldLike: true)
-            Service.saveSwipe(forUser: user, isLike: true)
+            self.saveSwipeAndCheckForMatch(forUser: user, didLike: true)
         }
     }
     
     func profileController(_ controller: ProfileController, didDislikeUser user: User) {
         controller.dismiss(animated: true) {
             self.performSwipAnimation(shouldLike: false)
-            Service.saveSwipe(forUser: user, isLike: false)
+            Service.saveSwipe(forUser: user, isLike: false, completion: nil)
         }
     }
 }
@@ -219,6 +239,13 @@ extension HomeController: ProfileControllerDelegate{
 extension HomeController: AuthenticationDelegate {
     func authenticationCompleted() {
         dismiss(animated: true)
-     fetchCurrentUserAndCards()
+        fetchCurrentUserAndCards()
+    }
+}
+
+//MARK: - MatchView Delegate
+extension HomeController: MatchViewDelegate {
+    func matchView(_ view: MatchView, wantsToSendMessageTo user: User) {
+        print("DEBUG: Start converstation with \(user.fullName)")
     }
 }
