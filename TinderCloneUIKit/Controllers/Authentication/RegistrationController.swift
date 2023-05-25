@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import JGProgressHUD
+
 class RegistrationController: UIViewController {
     
     //MARK: - Properties
@@ -25,7 +27,13 @@ class RegistrationController: UIViewController {
     private let fullNameTextField = CustomTextField(placeholder: "Full Name")
     private let passwordTextField = CustomTextField(placeholder: "Password", isSecureText: true)
     
-    private let registerButton = AuthButton(title: "Register", type: .system)
+    private let registerButton: AuthButton = {
+        let button = AuthButton(type: .system)
+        button.setTitle("Register", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        return button
+    }()
+    
     private let goToLoginButton = TextButton(title: "Already have an account", boldTitle: "Sign In")
     
     private var profileImage: UIImage?
@@ -50,6 +58,11 @@ class RegistrationController: UIViewController {
     }
     
     @objc fileprivate func handleRegisterUser(){
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.show(in: view)
+        
+        
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let fullName = fullNameTextField.text else { return }
@@ -61,9 +74,10 @@ class RegistrationController: UIViewController {
         AuthService.registerUser(withCredential: credentials) { error in
             if let error {
                 print("DEBUG: Error while registering user, \(error.localizedDescription)")
+                hud.dismiss()
                 return
             }
-            
+            hud.dismiss()
             self.delegate?.authenticationCompleted()
         }
     }

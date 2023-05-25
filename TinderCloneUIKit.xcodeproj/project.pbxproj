@@ -13,6 +13,10 @@
 		7410A1DC2A1E02AD00A1BE66 /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1DB2A1E02AD00A1BE66 /* SendMessageButton.swift */; };
 		7410A1DE2A1E02B700A1BE66 /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1DD2A1E02B700A1BE66 /* KeepSwipingButton.swift */; };
 		7410A1E02A1E1B4200A1BE66 /* MatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1DF2A1E1B4200A1BE66 /* MatchViewModel.swift */; };
+		7410A1E22A1F539600A1BE66 /* MatchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1E12A1F539600A1BE66 /* MatchHeaderView.swift */; };
+		7410A1E52A1F558D00A1BE66 /* MatchHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1E42A1F558D00A1BE66 /* MatchHeaderCell.swift */; };
+		7410A1E72A1F6F4900A1BE66 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1E62A1F6F4900A1BE66 /* Match.swift */; };
+		7410A1E92A1F7A6200A1BE66 /* MatchHeaderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7410A1E82A1F7A6200A1BE66 /* MatchHeaderCellViewModel.swift */; };
 		742651BD2A160CC000B1C1BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651BC2A160CC000B1C1BA /* LoginController.swift */; };
 		742651BF2A160CC600B1C1BA /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651BE2A160CC600B1C1BA /* RegistrationController.swift */; };
 		742651C32A1611C700B1C1BA /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742651C22A1611C700B1C1BA /* CustomTextField.swift */; };
@@ -63,6 +67,10 @@
 		7410A1DB2A1E02AD00A1BE66 /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		7410A1DD2A1E02B700A1BE66 /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		7410A1DF2A1E1B4200A1BE66 /* MatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewModel.swift; sourceTree = "<group>"; };
+		7410A1E12A1F539600A1BE66 /* MatchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderView.swift; sourceTree = "<group>"; };
+		7410A1E42A1F558D00A1BE66 /* MatchHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderCell.swift; sourceTree = "<group>"; };
+		7410A1E62A1F6F4900A1BE66 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		7410A1E82A1F7A6200A1BE66 /* MatchHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderCellViewModel.swift; sourceTree = "<group>"; };
 		742651BC2A160CC000B1C1BA /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		742651BE2A160CC600B1C1BA /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		742651C22A1611C700B1C1BA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -119,6 +127,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7410A1E32A1F557F00A1BE66 /* MatchHeader */ = {
+			isa = PBXGroup;
+			children = (
+				7410A1E12A1F539600A1BE66 /* MatchHeaderView.swift */,
+				7410A1E42A1F558D00A1BE66 /* MatchHeaderCell.swift */,
+			);
+			path = MatchHeader;
+			sourceTree = "<group>";
+		};
 		742651BB2A160CB700B1C1BA /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +266,7 @@
 				742651D62A17947300B1C1BA /* Settings */,
 				74E533182A0E518900BE7544 /* HomeButtonControlsStackView.swift */,
 				74E5331A2A0E558600BE7544 /* TopNavigationStackView.swift */,
+				7410A1E32A1F557F00A1BE66 /* MatchHeader */,
 				74C6FE1B2A14AE6000AB97E4 /* AgeRangeCell.swift */,
 				745165312A14E7B900CECFF6 /* CardView.swift */,
 				742651E42A1A8AB500B1C1BA /* ProfileCell.swift */,
@@ -261,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				745165372A152E2500CECFF6 /* User.swift */,
+				7410A1E62A1F6F4900A1BE66 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +292,7 @@
 				742651DD2A18F0F400B1C1BA /* SettingsViewModel.swift */,
 				7410A1D52A1C904B00A1BE66 /* ProfileViewModel.swift */,
 				7410A1DF2A1E1B4200A1BE66 /* MatchViewModel.swift */,
+				7410A1E82A1F7A6200A1BE66 /* MatchHeaderCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -377,6 +397,7 @@
 				745165342A14F5B600CECFF6 /* UIViewController+Ext.swift in Sources */,
 				742651D52A1792AF00B1C1BA /* MessagesController.swift in Sources */,
 				74E533152A0E4BFC00BE7544 /* UIView+Ext.swift in Sources */,
+				7410A1E92A1F7A6200A1BE66 /* MatchHeaderCellViewModel.swift in Sources */,
 				74E533042A0D6C6000BE7544 /* HomeController.swift in Sources */,
 				742651E32A1A887E00B1C1BA /* ProfileController.swift in Sources */,
 				7451653A2A152F3600CECFF6 /* CardViewModel.swift in Sources */,
@@ -389,10 +410,12 @@
 				7410A1E02A1E1B4200A1BE66 /* MatchViewModel.swift in Sources */,
 				74E533002A0D6C6000BE7544 /* AppDelegate.swift in Sources */,
 				742651D82A17947B00B1C1BA /* SettingsHeader.swift in Sources */,
+				7410A1E22A1F539600A1BE66 /* MatchHeaderView.swift in Sources */,
 				742651C52A16154900B1C1BA /* AuthButton.swift in Sources */,
 				74E5331B2A0E558600BE7544 /* TopNavigationStackView.swift in Sources */,
 				742651CF2A1771D300B1C1BA /* Constant.swift in Sources */,
 				742651E02A1A098900B1C1BA /* SettingsFooter.swift in Sources */,
+				7410A1E52A1F558D00A1BE66 /* MatchHeaderCell.swift in Sources */,
 				74C6FE162A13932800AB97E4 /* ImageView+Ext.swift in Sources */,
 				7410A1D62A1C904B00A1BE66 /* ProfileViewModel.swift in Sources */,
 				742651DE2A18F0F400B1C1BA /* SettingsViewModel.swift in Sources */,
@@ -402,6 +425,7 @@
 				74C6FE142A1392F800AB97E4 /* ImageFetcher.swift in Sources */,
 				742651BD2A160CC000B1C1BA /* LoginController.swift in Sources */,
 				74E533022A0D6C6000BE7544 /* SceneDelegate.swift in Sources */,
+				7410A1E72A1F6F4900A1BE66 /* Match.swift in Sources */,
 				742651C72A161B3000B1C1BA /* TextButton.swift in Sources */,
 				742651C92A162E6F00B1C1BA /* AuthViewModel.swift in Sources */,
 				74C6FE1C2A14AE6000AB97E4 /* AgeRangeCell.swift in Sources */,

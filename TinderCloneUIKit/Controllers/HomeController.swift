@@ -73,8 +73,10 @@ class HomeController: UIViewController {
             guard didLike == true else { return }
             
             Service.checkIfUserMatchExist(forUser: user) { didMatch in
-                print("DEBUG: Match")
                 self.presentMatchView(forUser: user)
+                    
+                guard let currentUser = self.user else { return }
+                Service.uploadMatch(currentUser: currentUser, matchedUser: user)
             }
         }
     }
@@ -157,8 +159,11 @@ extension HomeController: HomeNavigationStackViewDelegate {
     }
     
     func showMessages() {
-        let controller = MessagesController()
-        present(controller, animated: true)
+        guard let user else { return }
+        let controller = MessagesController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
 }
 
@@ -212,7 +217,12 @@ extension HomeController: HomeButtonControlsDelegate{
     }
     
     func handleRefresh() {
-        print("Refresh")
+        guard let use = self.user else { return }
+        
+        Service.fetchUsers(forCurrentuser: use) { users in
+            self.viewModels = users.map({ CardViewModel(user: $0)
+            })
+        }
     }
 }
 

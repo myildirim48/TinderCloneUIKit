@@ -7,14 +7,14 @@
 
 import UIKit
 class AuthButton: UIButton {
-    init(title: String, type: ButtonType = .system) {
-        super.init(frame: .zero)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        setTitle(title, for: .normal)
         backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-        titleLabel?.font = UIFont.systemFont(ofSize: 16,weight: .heavy)
         layer.cornerRadius = 5
         isEnabled = false
+        setTitleColor(.white, for: .normal)
     }
     
     override var intrinsicContentSize: CGSize {

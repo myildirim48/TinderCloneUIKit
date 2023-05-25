@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 protocol AuthenticationDelegate: AnyObject {
     func authenticationCompleted()
@@ -28,7 +29,12 @@ class LoginController: UIViewController {
     private let emailTextField = CustomTextField(placeholder: "Email")
     private let passwordTextField = CustomTextField(placeholder: "Password", isSecureText: true)
     
-    private let authButton = AuthButton(title: "Log In", type: .system)
+    private let authButton: AuthButton = {
+        let button = AuthButton(type: .system)
+        button.setTitle("Log in", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+        return button
+    }()
     
     private let goToRegistrationButton = TextButton(title: "Don't have an account?", boldTitle: "Sign Up")
 
@@ -43,7 +49,7 @@ class LoginController: UIViewController {
         configureTextFieldObservers()
     }
     
-    //MARK: -  ACtions
+    //MARK: -  Actions
     
     func configureActions() {
         authButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
@@ -51,13 +57,19 @@ class LoginController: UIViewController {
     }
     
     @objc fileprivate func handleLogin(){
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.show(in: view)
+        
         guard let email = emailTextField.text else { return }
         guard let password = emailTextField.text else { return }
         AuthService.userLogin(withEmail: email, password: password) { authResult, error in
             if let error {
                 print("DEBUG: Error while user sigin, \(error.localizedDescription)")
+                hud.dismiss()
                 return
             }
+            hud.dismiss()
             self.delegate?.authenticationCompleted()
         }
     }

@@ -15,31 +15,28 @@ struct Service {
         
         guard let minAge = user.minSeekingAge else { return }
         guard let maxAge = user.maxSeekingAge else { return }
-      
-        
+
         let query = COLLECTION_USERS
             .whereField("age", isGreaterThanOrEqualTo: minAge)
             .whereField("age", isLessThanOrEqualTo: maxAge)
-        
-        query.getDocuments { snapshot, error in
-            if let error {
-                print("DEBUG: Error while fetching users, \(error.localizedDescription)")
-                return
+        fetchSwipes { swipedUserIds in
+            query.getDocuments { snapshot, error in
+                if let error {
+                    print("DEBUG: Error while fetching users, \(error.localizedDescription)")
+                    return
+                }
+                
+                snapshot?.documents.forEach({ document in
+                    guard let user = try? document.data(as: User.self) else { return }
+                    guard user.uid != Auth.auth().currentUser?.uid else { return }
+                    guard swipedUserIds[user.uid] == nil else { return }
+                    users.append(user)
+                })
+                completion(users)
             }
-            
-            snapshot?.documents.forEach({ document in
-                guard let user = try? document.data(as: User.self) else { return }
-                guard user.uid != Auth.auth().currentUser?.uid else { return }
-                users.append(user)
-            })
-            completion(users)
-
         }
-
     }
-    static func saveUserData(user: User, completion: @escaping(Error?) -> Void ){
-//        let userData = User(fullName: credential.fullName, age: 18, email: credential.email, uid: userUid, imageUrls: [imgUrl])
-        
+    static func saveUserData(user: User, completion: @escaping(Error?) -> Void ){        
         guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
         COLLECTION_USERS.document(user.uid).setData(encodedUser,completion: completion)
 
@@ -87,6 +84,38 @@ struct Service {
         }
     }
     
+    static func uploadMatch(currentUser: User, matchedUser: User) {
+        guard let matchedProfileImageUrl = matchedUser.imageUrls.first else { return }
+        guard let currentProfileImageUrl = currentUser.imageUrls.first else { return }
+        
+        let matchedUser = Match(name: matchedUser.fullName, profileImageUrl: matchedProfileImageUrl, uid: matchedUser.uid)
+        guard let encodedMatchedUser = try? Firestore.Encoder().encode(matchedUser) else { return }
+
+        COLLECTION_MATCHES_MESSAGES.document(currentUser.uid).collection("matches")
+            .document(matchedUser.uid).setData(encodedMatchedUser)
+        
+        let currentUser = Match(name: currentUser.fullName, profileImageUrl: currentProfileImageUrl, uid: currentUser.uid)
+        guard let encodedCurrentUser = try? Firestore.Encoder().encode(currentUser) else { return }
+
+        COLLECTION_MATCHES_MESSAGES.document(matchedUser.uid).collection("matches")
+            .document(currentUser.uid).setData(encodedCurrentUser)
+    }
+    
+    static func fetchMatches(completion: @escaping([Match]) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+
+        COLLECTION_MATCHES_MESSAGES.document(uid).collection("matches")
+            .getDocuments { snapshot, error in
+                if let error {
+                    print("DEBUG: Error while fetching matches, \(error.localizedDescription)")
+                    return
+                }
+                guard let snapshot else { return }
+                let matches = snapshot.documents.compactMap { try? $0.data(as: Match.self) }
+                completion(matches)
+            }
+    }
+    
     //MARK: - Swipe
     
     static func saveSwipe(forUser user: User, isLike: Bool, completion: ((Error?) -> Void)?) {
@@ -105,5 +134,23 @@ struct Service {
                 COLLECTION_SWIPES.document(uid).setData(data, completion: completion)
             }
         }
+    }
+    
+    private static func fetchSwipes(completion: @escaping([String: Bool]) -> Void){
+        guard let CurrentUserUid = Auth.auth().currentUser?.uid else { return }
+         
+        COLLECTION_SWIPES.document(CurrentUserUid).getDocument { snapshot, error in
+            if let error {
+                print("DEBUG: Error wihle fetching swipes.", error.localizedDescription)
+            }
+            guard let data = snapshot?.data() as? [String: Bool] else {
+                completion([String: Bool]())
+                return
+                
+            }
+            completion(data)
+        }
+        
+        
     }
 }
