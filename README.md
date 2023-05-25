@@ -2,8 +2,11 @@
 This is my tutorial app where i used UIKit, Firebase
 
 ## Features
-    Messaging functionality.
+    * Messaging functionality.
 
+## Design Pattern 
+ * MVVM
+ 
 ## SPM
  * Firebase
  * JGProgressHUD
