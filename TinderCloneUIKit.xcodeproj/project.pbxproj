@@ -71,6 +71,7 @@
 		7410A1E42A1F558D00A1BE66 /* MatchHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderCell.swift; sourceTree = "<group>"; };
 		7410A1E62A1F6F4900A1BE66 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		7410A1E82A1F7A6200A1BE66 /* MatchHeaderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHeaderCellViewModel.swift; sourceTree = "<group>"; };
+		7410A1EA2A1F7FC700A1BE66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		742651BC2A160CC000B1C1BA /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		742651BE2A160CC600B1C1BA /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		742651C22A1611C700B1C1BA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -215,6 +216,7 @@
 		74E532F32A0D6C6000BE7544 = {
 			isa = PBXGroup;
 			children = (
+				7410A1EA2A1F7FC700A1BE66 /* README.md */,
 				74C6FE0E2A12383500AB97E4 /* GoogleService-Info.plist */,
 				74E532FE2A0D6C6000BE7544 /* TinderCloneUIKit */,
 				74E532FD2A0D6C6000BE7544 /* Products */,
